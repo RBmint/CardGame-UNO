@@ -60,10 +60,10 @@ public class Game implements GameConstants {
                     System.out.println("Current player count is automatically set to 2");
                     playerCount = 2;
                 }
-                if (playerCount > 8) {
-                    System.out.println("Game cannot have more than 8 players");
-                    System.out.println("Current player count is automatically set to 8");
-                    playerCount = 8;
+                if (playerCount > 9) {
+                    System.out.println("Game cannot have more than 9 players");
+                    System.out.println("Current player count is automatically set to 9");
+                    playerCount = 9;
                 }
                 break;
             } catch (NumberFormatException e) {
