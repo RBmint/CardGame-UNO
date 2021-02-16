@@ -106,10 +106,18 @@ public class Game implements GameConstants {
         return aiCount;
     }
 
+    /**
+     * Call the card dealer to draw a new card from the card stack.
+     * @return the card that has been drawn
+     */
     public UNOCard drawNewCardFromCardStack() {
         return cardDealer.getNewCardFromCardDeck();
     }
 
+    /**
+     * Helper function to get all current active players.
+     * @return the array of current active players.
+     */
     public Player[] getActivePlayers() {
         return activePlayers;
     }

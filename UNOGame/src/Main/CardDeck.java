@@ -65,7 +65,7 @@ public class CardDeck implements GameConstants {
      * Add each color, number 1 through 9 twice, while adding number 0
      * only once to the deck.
      */
-    private void addNumberCards() {
+    public void addNumberCards() {
         for(Color color : UNO_COLORS) {
             for (int num : UNO_NUMBERS) {
                 UNOCards.add(new NumberCard(color, Integer.toString(num)));
@@ -79,7 +79,7 @@ public class CardDeck implements GameConstants {
     /**
      * Add each action card corresponding to each color twice to the deck.
      */
-    private void addActionCards() {
+    public void addActionCards() {
         for(Color color : UNO_COLORS) {
             for(String cardTypes : ACTION_CARD_TYPES) {
                 UNOCards.add(new ActionCard(color, cardTypes));
@@ -91,7 +91,7 @@ public class CardDeck implements GameConstants {
     /**
      * Add four wild cards each to the deck.
      */
-    private void addWildCards() {
+    public void addWildCards() {
         for (int i = 0; i < WILD_CARD_COUNT; i++) {
             for (String cardTypes : WILD_CARD_TYPES) {
                 UNOCards.add(new WildCard(cardTypes));

@@ -1,11 +1,15 @@
 package Tests;
 
 import Main.CardDeck;
+import UNOCardTypes.NumberCard;
 import UNOCardTypes.UNOCard;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.util.Stack;
 
+import static GameInterface.GameConstants.UNO_COLORS;
+import static GameInterface.GameConstants.UNO_NUMBERS;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CardDeckTest {
@@ -20,6 +24,12 @@ class CardDeckTest {
     @Test
     void TestGetCardDeck() {
         assertEquals(108, originalCardDeck.getCardDeck().size());
+        originalCardDeck.addWildCards();
+        assertEquals(116, originalCardDeck.getCardDeck().size());
+        originalCardDeck.addActionCards();
+        assertEquals(140, originalCardDeck.getCardDeck().size());
+        originalCardDeck.addNumberCards();
+        assertEquals(216, originalCardDeck.getCardDeck().size());
     }
 
     /**
