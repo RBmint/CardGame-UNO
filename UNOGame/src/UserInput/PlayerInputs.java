@@ -64,6 +64,9 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
         }
     }
 
+    /**
+     * TODO 1.2
+     */
     private void aiPlayerPlaysOneCard() {
         Player aiPlayer = game.getCurrentPlayingPlayer();
         boolean aiHasAPlayableCard = false;
@@ -82,6 +85,10 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
             }
         }
     }
+
+    /**
+     * TODO 1.2
+     */
     private void strategicAIPlaysOneCard() {
         boolean hasPlayedACard;
         hasPlayedACard = tryPlayActionCardFirstIfNextPlayerHasLessThanTwoCards();
@@ -93,6 +100,10 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
         baselineAIPlaysOneCard();
     }
 
+    /**
+     * TODO 1.2
+     * @return
+     */
     private boolean tryPlayActionCardFirstIfNextPlayerHasLessThanTwoCards() {
         if (game.getNextPlayer().getNumCardInHand() <= 2) {
             return playTheCardInHand(ACTION_CARD);
@@ -100,10 +111,18 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
         return false;
     }
 
+    /**
+     * TODO 1.2
+     * @return
+     */
     private boolean tryPlayNumberCardFirst() {
         return playTheCardInHand(NUMBER_CARD);
     }
 
+    /**TODO 1.2
+     * @param numberCard
+     * @return
+     */
     private boolean playTheCardInHand(String numberCard) {
         for (UNOCard cardInHand : game.getCurrentPlayingPlayer().getAllCards()) {
             if (cardInHand.getCardType().equals(numberCard) &&
@@ -117,6 +136,10 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
         return false;
     }
 
+    /**
+     * TODO 1.2
+     * @return
+     */
     private boolean tryChangeToColorWithMostAdvantage() {
         UNOCard cardToBePlayed = null;
         for (UNOCard cardInHand : game.getCurrentPlayingPlayer().getAllCards()) {
@@ -141,6 +164,9 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
         return false;
     }
 
+    /**
+     * TODO 1.2
+     */
     private Color findCardWithMostColor() {
         int green = 0;
         int yellow = 0;
@@ -167,6 +193,10 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
         if (blue > max) {color = BLUE;}
         return color;
     }
+
+    /**
+     * TODO 1.2
+     */
     private void baselineAIPlaysOneCard() {
         Player aiPlayer = game.getCurrentPlayingPlayer();
         int randomInt = (int) (Math.random() * aiPlayer.getNumCardInHand());
@@ -184,6 +214,10 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
         }
     }
 
+    /**
+     * TODO 1.2
+     * @param isStrategicAI
+     */
     private void aiPlayerDrawsOneCard(boolean isStrategicAI) {
         checkIfDeckNeedShuffle(1);
         UNOCard drawnCard = game.drawNewCardFromCardStack();
@@ -203,6 +237,10 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
         }
     }
 
+    /**
+     * TODO 1.2
+     * @param selectedCard
+     */
     private void aiPlayerRandomChooseColor(UNOCard selectedCard) {
         discardPile.add(selectedCard);
         game.removePlayedCardFromPlayer(selectedCard);
@@ -328,12 +366,18 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
         checkIfCardIsAWildDrawFourCard(wildCard);
     }
 
+    /**
+     * Check if the card is a wild draw four card. If it is,
+     * the next player will have to draw four cards.
+     * @param wildCard the card to be checked
+     */
     private void checkIfCardIsAWildDrawFourCard(WildCard wildCard) {
         if (wildCard.getCardValue().equals(WILD_DRAW_FOUR_CARD)) {
             checkIfDeckNeedShuffle(4);
             game.playerDrawMultipleCards(4);
             game.skipCurrentPlayerTurn();
-            System.out.println(game.getCurrentPlayingPlayer().getPlayerName() + " have to draw four cards and skip his turn.");
+            System.out.println(game.getCurrentPlayingPlayer().getPlayerName()
+                    + " have to draw four cards and skip his turn.");
         }
     }
 
@@ -343,7 +387,8 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
     private void checkGameStatus() {
         if (game.isOver()) {
             gameIsOver = true;
-            System.out.println("Game is over, " + game.getCurrentPlayingPlayer().getPlayerName() + " wins!!!");
+            System.out.println("Game is over, "
+                    + game.getCurrentPlayingPlayer().getPlayerName() + " wins!!!");
         }
     }
 
@@ -379,13 +424,15 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
      */
     private void printCurrentCard(UNOCard cardToPrint) {
         if (cardToPrint.getCardType().equals(NUMBER_CARD) || cardToPrint.getCardType().equals(ACTION_CARD)) {
-            System.out.println(cardToPrint.colorToString(cardToPrint.getCardColor()) + " " + cardToPrint.getCardValue());
+            System.out.println(cardToPrint.colorToString(cardToPrint.getCardColor())
+                    + " " + cardToPrint.getCardValue());
         }
         if (cardToPrint.getCardType().equals(WILD_CARD) || cardToPrint.getCardType().equals(WILD_DRAW_FOUR_CARD)) {
             if (((WildCard) cardToPrint).getChosenColor() == null) {
                 System.out.println(cardToPrint.getCardValue());
             } else {
-                System.out.println(cardToPrint.getCardValue() + cardToPrint.colorToString(((WildCard) cardToPrint).getChosenColor()));
+                System.out.println(cardToPrint.getCardValue() +
+                        cardToPrint.colorToString(((WildCard) cardToPrint).getChosenColor()));
             }
         }
     }
@@ -420,12 +467,14 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
             game.skipCurrentPlayerTurn();
             checkIfDeckNeedShuffle(2);
             game.playerDrawMultipleCards(2);
-            System.out.println(game.getCurrentPlayingPlayer().getPlayerName() + " have to draw two cards and skip his turn.");
+            System.out.println(game.getCurrentPlayingPlayer().getPlayerName()
+                    + " have to draw two cards and skip his turn.");
             game.skipCurrentPlayerTurn();
         }
         if (actionCard.getCardValue().equals(SKIP_CARD)) {
             game.skipCurrentPlayerTurn();
-            System.out.println(game.getCurrentPlayingPlayer().getPlayerName() + " have to skip his turn.");
+            System.out.println(game.getCurrentPlayingPlayer().getPlayerName()
+                    + " have to skip his turn.");
             game.skipCurrentPlayerTurn();
         }
         if (actionCard.getCardValue().equals(REVERSE_CARD)) {
@@ -443,7 +492,8 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
      * another custom rule in assignment 1.1 Part IV.
      */
     private void penaltyDrawOneCardAndSkipTurn() {
-        System.out.println("You chose the invalid card twice in a row. You have to draw a card and end your turn.");
+        System.out.println("You chose the invalid card twice in a row. " +
+                "You have to draw a card and end your turn.");
         checkIfDeckNeedShuffle(1);
         Player p = game.getCurrentPlayingPlayer();
         UNOCard drawnCard = game.drawNewCardFromCardStack();
