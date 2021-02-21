@@ -2,6 +2,9 @@ package GameInterface;
 
 import java.awt.*;
 
+/**
+ * This class contains the crucial constants for the UNO cards.
+ */
 public interface UNOCardConstants {
     Color RED = new Color(255,0,0);
     Color GREEN = new Color(0,255,0);

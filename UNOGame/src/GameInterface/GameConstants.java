@@ -2,6 +2,9 @@ package GameInterface;
 
 import java.awt.*;
 
+/**
+ * This class contains the crucial constant for the UNO game.
+ */
 public interface GameConstants extends UNOCardConstants {
     Color[] UNO_COLORS = {RED, BLUE, GREEN, YELLOW};
     int STARTING_HAND = 7;
