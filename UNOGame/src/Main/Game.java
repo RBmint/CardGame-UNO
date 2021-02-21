@@ -82,27 +82,23 @@ public class Game implements GameConstants {
     private int getDesiredAIPlayerNumber(int currentPlayerCount) {
         int aiCount;
         Scanner scanner = new Scanner(System.in);
-        //while (true) {
-            System.out.println("Please indicate the number of AI players:");
-            try {
-                String input = scanner.next();
-                aiCount = Integer.parseInt(input);
-                if (aiCount < 0) {
-                    aiCount = 0;
-                }
-                if (aiCount > currentPlayerCount) {
-                    System.out.println("Cannot have more AI players than total players");
-                    //System.out.println("Game need at least one real player");
-                    System.out.println("AI player count is automatically set to " + currentPlayerCount);
-                    aiCount = currentPlayerCount;
-                }
-                //break;
-            } catch (NoSuchElementException | NumberFormatException e) {
-                System.out.println("Invalid input, AI player count is automatically set to 0");
+        System.out.println("Please indicate the number of AI players:");
+        try {
+            String input = scanner.next();
+            aiCount = Integer.parseInt(input);
+            if (aiCount < 0) {
                 aiCount = 0;
-                //break;
             }
-        //}
+            if (aiCount > currentPlayerCount) {
+                System.out.println("Cannot have more AI players than total players");
+                System.out.println("Game need at least one real player");
+                System.out.println("AI player count is automatically set to " + currentPlayerCount);
+                aiCount = currentPlayerCount;
+            }
+        } catch (NoSuchElementException | NumberFormatException e) {
+            System.out.println("Invalid input, AI player count is automatically set to 0");
+            aiCount = 0;
+        }
         return aiCount;
     }
 

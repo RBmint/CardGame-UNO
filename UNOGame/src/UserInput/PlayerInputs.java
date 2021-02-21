@@ -65,7 +65,8 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
     }
 
     /**
-     * TODO 1.2
+     * The AI player will play one card if he has a playable card in hand.
+     * The situation will be different for baseline and strategic AI players.
      */
     private void aiPlayerPlaysOneCard() {
         Player aiPlayer = game.getCurrentPlayingPlayer();
@@ -87,7 +88,11 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
     }
 
     /**
-     * TODO 1.2
+     * The strategic AI will play a card. He will try to play an action
+     * card first if the next player is about to win (has less than two cards)
+     * and then try to play a number card first instead of using a wild card.
+     * At last, if a wild card has to be played, he will try to change the
+     * color to the color that he has the most.
      */
     private void strategicAIPlaysOneCard() {
         boolean hasPlayedACard;
@@ -101,8 +106,9 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
     }
 
     /**
-     * TODO 1.2
-     * @return
+     * The strategic AI will try to play an action card if the next
+     * player is about to win.
+     * @return True if the strategic AI has successfully played an action card.
      */
     private boolean tryPlayActionCardFirstIfNextPlayerHasLessThanTwoCards() {
         if (game.getNextPlayer().getNumCardInHand() <= 2) {
@@ -112,16 +118,18 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
     }
 
     /**
-     * TODO 1.2
-     * @return
+     * The strategic AI will try to play a normal number card and
+     * try to save the wild card if possible.
+     * @return True if the strategic AI has succesfully played a number card.
      */
     private boolean tryPlayNumberCardFirst() {
         return playTheCardInHand(NUMBER_CARD);
     }
 
-    /**TODO 1.2
-     * @param numberCard
-     * @return
+    /**
+     * The AI player will play a card from his hand.
+     * @param numberCard the card to be played
+     * @return True if the AI player successfully played this card.
      */
     private boolean playTheCardInHand(String numberCard) {
         for (UNOCard cardInHand : game.getCurrentPlayingPlayer().getAllCards()) {
@@ -137,8 +145,9 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
     }
 
     /**
-     * TODO 1.2
-     * @return
+     * The strategic AI player will try to choose the color of the
+     * wild card to the color that he has the most in hand.
+     * @return True if the strategic AI successfully played a wild card.
      */
     private boolean tryChangeToColorWithMostAdvantage() {
         UNOCard cardToBePlayed = null;
@@ -165,7 +174,8 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
     }
 
     /**
-     * TODO 1.2
+     * Find the color that the strategic AI has the most in hands.
+     * @return the color that strategic AI has the most.
      */
     private Color findCardWithMostColor() {
         int green = 0;
@@ -186,7 +196,7 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
                 blue++;
             }
         }
-        int max = green;
+        int max = green;        /*if any color has a tie, the default color will be green*/
         Color color = GREEN;
         if (yellow > max) {color = YELLOW;}
         if (red > max) {color = RED;}
@@ -195,7 +205,8 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
     }
 
     /**
-     * TODO 1.2
+     * The baseline AI will play a card from his hand. He will try to
+     * play a random card from his hand if it is playable.
      */
     private void baselineAIPlaysOneCard() {
         Player aiPlayer = game.getCurrentPlayingPlayer();
@@ -215,8 +226,10 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
     }
 
     /**
-     * TODO 1.2
-     * @param isStrategicAI
+     * The AI player will draw a card. The baseline AI will just keep the card.
+     * The strategic AI, however, will try to play the drawn card immediately
+     * if that is applicable.
+     * @param isStrategicAI if the AI player is strategic.
      */
     private void aiPlayerDrawsOneCard(boolean isStrategicAI) {
         checkIfDeckNeedShuffle(1);
@@ -238,8 +251,8 @@ public class PlayerInputs implements UNOCardConstants, GameConstants {
     }
 
     /**
-     * TODO 1.2
-     * @param selectedCard
+     * The baseline AI will choose the color of the wild card randomly.
+     * @param selectedCard the wild card that was played.
      */
     private void aiPlayerRandomChooseColor(UNOCard selectedCard) {
         discardPile.add(selectedCard);
