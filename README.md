@@ -1,4 +1,4 @@
-# sp21-cs242-assignment1
+# Card Game: UNO
 **Project description**
 
 A simple UNO Game playing using terminal.
@@ -6,9 +6,6 @@ A simple UNO Game playing using terminal.
 It supports multiple player (2-9 players) and two different kinds of AI players.  
 
 
-**Motivation**
-
-CS242 SP21 Assignment 1.0 - 1.2
 
 **Code style**
 
